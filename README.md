@@ -9,7 +9,7 @@ udacity project
 - Filter Locations by typing text in the input field 
 - Click on the map to see streetview around the location
 
-#### APIs & Frameworks Used
+# APIs & Frameworks Used
 * KnockoutJS
 * jQuery
 * Google Maps API
