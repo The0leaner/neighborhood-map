@@ -1,0 +1,40 @@
+html,
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.header {
+  background-color: #212121;
+	width: 100%;
+	text-align: center;
+	color: white;
+}
+.bar{
+	background-color:#58646d;
+}
+#pano {
+    width: 200px;
+    height: 200px;
+}
+#map {
+	height: 515px;;
+	width: 100%;
+}
+#locations{
+	padding-left: 50px;
+	border: 1px solid #999;
+    border-radius: 3px;
+}
+
+#location_list {
+	width:180px; 
+}
+
+#search_box{
+	width:180px;
+}
+
+#error{ color: red; }
+

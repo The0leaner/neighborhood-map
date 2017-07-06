@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Neighborhood Map</title>
+	<!-- CSS -->
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<!--jQuery-->
+	<script type='text/javascript' src='js/jquery-1.12.0.min.js'></script>
+ 	<!--Knockout.js-->
+    <script src="js/knockout-3.4.0.js"></script>
+</head>
+<body>
+  <div class="container-fluid">
+     <div class="row" style="padding-bottom: 30px;">
+      <div class="col-xs-12 header">
+        <h1>Neighborhood Nearby</h1>
+       </div>
+    </div>
+    <div class="row bar">
+      <div class="col-sm-4 bar">
+          <div id="error">
+            <h4><span data-bind="text: errorDisplay"></span></h4>
+          </div>
+          <div id="locations">
+            <div>
+              <h3>Searcher</h3>
+              <input type="search" class="form-control" id="search_box" data-bind="textInput: query" autocomplete="off" />
+            </div>
+            <div>
+              <h3>Locations</h3>
+              <select data-bind="foreach: filteredLocations, value:selectedItem" size="6" id="location_list">
+                <option data-bind="text: name, click: $parent.onClick"></option>
+              </select>
+            </div>
+          </div>
+      </div>
+      <div class="col-sm-8">
+          <div id="map"></div>
+      </div>
+  	</div>
+  </div>
+  <script src="js/app.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCisMRnN2bXoWJZmKgJOcAgrWluFFeX864&callback=initMap" onerror="googleError()" async defer></script>
+</body>
+</html>
