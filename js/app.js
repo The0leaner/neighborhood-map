@@ -1,5 +1,6 @@
+var map;
+var infoWindow;
 
-var map, infoWindow;
 function initMap() {
  // Create a styles array to use with the map.
     var styles = [
@@ -68,6 +69,8 @@ function initMap() {
             ]
           }
     ];
+
+
 //intitialize the map settings
     var myLatLng = {lat: 40.7413549, lng: -73.9980244};
     map = new google.maps.Map(
@@ -177,6 +180,7 @@ var viewModel = function() {
     setTimeout(function(){ marker.setIcon(null);}, 600);
   };
 
+
   // function to add API information to each marker
   self.addApiInfo = function(passedMarker){
       $.ajax({
@@ -189,6 +193,11 @@ var viewModel = function() {
           // add likes and ratings to marker
           passedMarker.likes = result.hasOwnProperty('likes') ? result.likes.summary: "";
           passedMarker.rating = result.hasOwnProperty('rating') ? result.rating: "";
+          //add the click event listener to mapMarker
+          passedMarker.addListener('click', function(){
+          //set this mapMarker to the "selected" state
+          self.setSelected(passedMarker);
+      });
         },
         //alert if there is error in recievng json
         error: function(e) {
@@ -197,17 +206,14 @@ var viewModel = function() {
       });
   };
 
-  // iterate through locationList and add marker event listener and API information
-  for (var i=0; i < self.locationListLength; i++){
-    (function(passedMarker){
+  function foo(passedMarker){
       //add API items to each mapMarker
       self.addApiInfo(passedMarker);
-      //add the click event listener to mapMarker
-      passedMarker.addListener('click', function(){
-        //set this mapMarker to the "selected" state
-        self.setSelected(passedMarker);
-      });
-    })(self.locationList[i]);
+      
+    }
+  // iterate through locationList and add marker event listener and API information
+  for (var i=0; i < self.locationListLength; i++){
+    (foo)(self.locationList[i]);
   }
 
   // create a filter observable for filter text
